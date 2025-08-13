@@ -1,13 +1,18 @@
+import { useContext } from "react";
 import { type TimerMode } from "../../App";
 import "../../styles/app-header.css";
 import { TimerDurations } from "../pomodoro-timer/pomodoro-timer";
+import { TimerContext } from "../../context/timer-context";
 
 interface AppHeaderProps {
-  timeLeft: number;
   timerMode: TimerMode;
 }
 
-const AppHeader = ({ timeLeft, timerMode }: AppHeaderProps) => {
+const AppHeader = ({ timerMode }: AppHeaderProps) => {
+  const context = useContext(TimerContext);
+  if (!context) throw new Error("Error with context");
+  const { timeLeft } = context;
+
   const maxProgressBarValue = TimerDurations[timerMode];
 
   return (

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import TimerControl from "./timer-control";
 import TimerDisplay from "./timer-display";
 import TimerTabs from "./timer-tabs";
@@ -6,6 +6,7 @@ import TimerTabs from "./timer-tabs";
 import type { TimerMode } from "../../App";
 
 import "../../styles/pomodoro-timer.css";
+import { TimerContext } from "../../context/timer-context";
 
 export const TimerDurations = {
   pomodoro: 25 * 60,
@@ -19,7 +20,11 @@ interface PomodoroTimerProps {
 }
 
 const PomodoroTimer = ({ activeMode, setActiveMode }: PomodoroTimerProps) => {
-  const [timeLeft, setTimeLeft] = useState<number>(TimerDurations.pomodoro);
+  // const [timeLeft, setTimeLeft] = useState<number>(TimerDurations.pomodoro);
+  const context = useContext(TimerContext);
+  if (!context) throw new Error("Error with context");
+  const { setTimeLeft } = context;
+
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const intervalIdRef = useRef<number | null>(null);
 
@@ -65,7 +70,6 @@ const PomodoroTimer = ({ activeMode, setActiveMode }: PomodoroTimerProps) => {
 
   const pauseTimer = () => {
     const intervalId = intervalIdRef.current;
-    console.log({ intervalId });
     if (intervalId) {
       clearInterval(intervalId);
       setIsRunning(false);
@@ -75,7 +79,7 @@ const PomodoroTimer = ({ activeMode, setActiveMode }: PomodoroTimerProps) => {
   return (
     <section className="pomodoro-timer">
       <TimerTabs activeTab={activeMode} onTabChange={setActiveMode} />
-      <TimerDisplay currentTime={timeLeft} />
+      <TimerDisplay />
       <TimerControl
         isRunning={isRunning}
         startTimer={startTimer}
