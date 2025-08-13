@@ -1,0 +1,60 @@
+.pomodoro-timer {
+  background-color: var(--color-secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  width: 30rem;
+  align-self: center;
+  border-radius: 5px;
+}
+
+.timer-tabs__button {
+  background-color: var(--color-secondary);
+  border-radius: 5px;
+  padding: 0.25rem 1rem;
+}
+
+.timer-tabs__button--active {
+  background-color: var(--color-accent);
+}
+
+.timer-display {
+  font-size: 7rem;
+  font-weight: 600;
+  user-select: none;
+}
+
+.timer-display__mode--active {
+  display: block;
+}
+
+.timer-control {
+  padding-top: 0.25rem;
+}
+
+.timer-control__button {
+  background-color: var(--gray-darker);
+  border-radius: 5px;
+}
+
+.timer-control__button .front {
+  background-color: #fff;
+  display: block;
+  border-radius: 5px;
+  padding: 0.6rem 1rem;
+  width: 10rem;
+  transform: translateY(-5px);
+
+  color: var(--color-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+}
+
+.timer-control__button:active .front,
+.timer-control__button #pause,
+.front {
+  transform: translateY(-2px);
+}

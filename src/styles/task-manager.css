@@ -1,0 +1,103 @@
+.task-manager {
+  width: 30rem;
+  align-self: center;
+  padding: 1rem 0;
+}
+
+.timer-prompt {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.task-manager__header {
+  display: block;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid #fff;
+}
+
+.task-manager__task-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.task {
+  background-color: #fff;
+  padding: 1rem 0.25rem;
+  color: #000;
+  border-radius: 5px;
+  list-style: none;
+  column-gap: 0.4rem;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s ease-in-out;
+  border-left: 5px solid transparent;
+  transition: border-left-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    text-decoration-color 0.3s ease-in-out;
+}
+
+.task--active {
+  border-left-color: var(--color-accent-darker);
+}
+
+.task--completed {
+  color: var(--gray);
+  text-decoration: line-through;
+  transition: color 0.3s ease-in-out, text-decoration-color 0.3s ease-in-out;
+}
+
+.task label {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.25rem;
+  cursor: pointer;
+}
+
+.task label svg {
+  stroke: var(--gray-lighter);
+  fill: var(--gray-lighter);
+  width: 1.75rem;
+  height: 1.75rem;
+  transition: stroke 0.3s ease-in-out, fill 0.3s ease-in-out;
+}
+
+.task button#edit-button {
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 0 0.75rem;
+}
+
+.task button#edit-button svg {
+  stroke: var(--gray-lighter);
+  fill: var(--gray-lighter);
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: stroke 0.3s ease-in-out, fill 0.3s ease-in-out;
+}
+
+.task button#edit-button:hover svg {
+  stroke: var(--gray);
+  fill: var(--gray);
+}
+
+.task--completed label svg {
+  stroke: var(--color-accent);
+  fill: var(--color-accent);
+}
+
+.task__checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.task-manager__add-task-button {
+  background-color: var(--color-secondary);
+  padding: 0.75rem 1rem;
+  color: #fff;
+  border: 1px dashed var(--gray);
+  border-radius: 5px;
+  width: 100%;
+}

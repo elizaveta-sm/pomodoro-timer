@@ -1,0 +1,60 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+:root {
+  font-family: "Roboto Mono", system-ui, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+
+  transition: background-color 0.3s ease;
+
+  --gray-darker: #b3b3b3;
+  --gray: #cacaca;
+  --gray-lighter: #d9d9d9;
+
+  --color-primary: #ba4949;
+  --color-secondary: #c15c5c;
+  --color-accent: #a44e4e;
+  --color-accent-darker: #622f2f;
+}
+
+body.pomodoro-mode {
+  --color-primary: #ba4949;
+  --color-secondary: #c15c5c;
+  --color-accent: #a44e4e;
+  --color-accent-darker: #733737;
+}
+
+body.shortbreak-mode {
+  --color-primary: #38858a;
+  --color-secondary: #4c9196;
+  --color-accent: #417b80;
+  --color-accent-darker: #2e565a;
+}
+
+body.longbreak-mode {
+  --color-primary: #397097;
+  --color-secondary: #4d7fa2;
+  --color-accent: #426c8a;
+  --color-accent-darker: #2e4c61;
+}
