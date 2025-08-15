@@ -10,7 +10,7 @@ export interface TimerContextValue {
   timeLeft: number;
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>;
   durations: TimerDurationsState;
-  setNewDurations: (newDurations: TimerDurationsState) => void;
+  setDurations: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface TimerProviderProps {
