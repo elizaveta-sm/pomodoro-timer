@@ -4,11 +4,10 @@ import { useTimerContext } from "../../context/timer-context";
 import { useState } from "react";
 
 interface ModalProps {
-  isOpen: boolean;
   onClose: () => void;
 }
 
-const Modal = ({ isOpen, onClose }: ModalProps) => {
+const Modal = ({ onClose }: ModalProps) => {
   const { durations, setDurations } = useTimerContext();
 
   const [formValues, setFormValues] = useState({

@@ -55,10 +55,7 @@ const AppHeader = ({ timerMode }: AppHeaderProps) => {
       </div>
 
       {isModalOpen && (
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen((isOpen) => !isOpen)}
-        />
+        <Modal onClose={() => setIsModalOpen((isOpen) => !isOpen)} />
       )}
     </header>
   );
