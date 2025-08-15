@@ -1,19 +1,18 @@
-import { useContext } from "react";
 import { type TimerMode } from "../../App";
 import "../../styles/app-header.css";
-import { TimerDurations } from "../pomodoro-timer/pomodoro-timer";
-import { TimerContext } from "../../context/timer-context";
+import { useTimerContext } from "../../context/timer-context";
+import Modal from "../ui/modal";
+import { useState } from "react";
 
 interface AppHeaderProps {
   timerMode: TimerMode;
 }
 
 const AppHeader = ({ timerMode }: AppHeaderProps) => {
-  const context = useContext(TimerContext);
-  if (!context) throw new Error("Error with context");
-  const { timeLeft } = context;
+  const { timeLeft, durations } = useTimerContext();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const maxProgressBarValue = TimerDurations[timerMode];
+  const maxProgressBarValue = durations[timerMode];
 
   return (
     <header className="app-header">
@@ -29,7 +28,7 @@ const AppHeader = ({ timerMode }: AppHeaderProps) => {
           </svg>
           <span>Pomofocus</span>
         </h2>
-        <button>
+        <button onClick={() => setIsModalOpen(true)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
@@ -54,6 +53,13 @@ const AppHeader = ({ timerMode }: AppHeaderProps) => {
           value={maxProgressBarValue - timeLeft}
         />
       </div>
+
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen((isOpen) => !isOpen)}
+        />
+      )}
     </header>
   );
 };

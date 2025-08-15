@@ -1,20 +1,50 @@
-import { createContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
+
+interface TimerDurationsState {
+  pomodoro: number;
+  shortBreak: number;
+  longBreak: number;
+}
 
 export interface TimerContextValue {
   timeLeft: number;
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>;
+  durations: TimerDurationsState;
+  setNewDurations: (newDurations: TimerDurationsState) => void;
 }
 
-export const TimerContext = createContext<TimerContextValue | undefined>(
-  undefined
-);
+interface TimerProviderProps {
+  children: ReactNode;
+}
 
-export const TimerProvider = ({ children }: { children: ReactNode }) => {
-  const [timeLeft, setTimeLeft] = useState<number>(25 * 60);
+export const defaultTimerDurations: TimerDurationsState = {
+  pomodoro: 25 * 60,
+  shortBreak: 5 * 60,
+  longBreak: 15 * 60,
+};
+
+const TimerContext = createContext<TimerContextValue | null>(null);
+
+export const TimerProvider = ({ children }: TimerProviderProps) => {
+  const [durations, setDurations] = useState<TimerDurationsState>(
+    defaultTimerDurations
+  );
+  const [timeLeft, setTimeLeft] = useState<number>(durations.pomodoro);
+
+  const value = {
+    timeLeft,
+    setTimeLeft,
+    durations,
+    setDurations,
+  };
 
   return (
-    <TimerContext.Provider value={{ timeLeft, setTimeLeft }}>
-      {children}
-    </TimerContext.Provider>
+    <TimerContext.Provider value={value}>{children}</TimerContext.Provider>
   );
+};
+
+export const useTimerContext = () => {
+  const context = useContext(TimerContext);
+  if (!context) throw new Error("Context Not Found");
+  return context;
 };

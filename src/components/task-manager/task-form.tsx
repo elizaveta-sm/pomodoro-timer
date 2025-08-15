@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Task } from "./task-manager";
 
 import "../../styles/task-form.css";
+import Button from "../ui/button";
 
 interface TaskFormProps {
   initialTask?: Task;
@@ -50,10 +51,13 @@ const TaskForm = ({
         )}
 
         <div className="task-form__actions-right">
-          <button onClick={onCancel} type="button">
-            Cancel
-          </button>
-          <button type="submit">Save</button>
+          <Button
+            clickHandler={onCancel}
+            type="button"
+            variant="cancel"
+            label="Cancel"
+          />
+          <Button type="submit" label="Save" variant="save" />
         </div>
       </div>
     </form>

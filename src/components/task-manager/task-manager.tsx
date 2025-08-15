@@ -45,7 +45,6 @@ const TaskList = ({ activeMode }: TaskListProps) => {
   const [editingTaskId, setEditingTaskId] = useState("");
 
   useEffect(() => {
-    console.log("storing tasks to local storage");
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
@@ -127,7 +126,7 @@ const TaskList = ({ activeMode }: TaskListProps) => {
           )}
       </ul>
 
-      {isAddingNewTask ? (
+      {isAddingNewTask && !editingTaskId ? (
         <TaskForm
           onSave={handleAddTask}
           onCancel={() => setIsAddingNewTask(false)}

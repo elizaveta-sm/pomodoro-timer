@@ -1,0 +1,24 @@
+.btn {
+  border-radius: 5px;
+  padding: 0.25rem 0.75rem;
+  color: #000;
+  border: 1px dashed var(--gray-lighter);
+}
+
+.btn:hover {
+  border-style: solid;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    border-style 0.3s ease-in-out;
+}
+
+.btn--cancel {
+}
+
+.btn--save {
+  background-color: #e1e1e1;
+  padding: 0.25rem 1rem;
+}
+
+.btn--save:hover {
+  background-color: var(--gray);
+}

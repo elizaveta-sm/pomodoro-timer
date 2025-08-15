@@ -1,18 +1,11 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TimerControl from "./timer-control";
 import TimerDisplay from "./timer-display";
 import TimerTabs from "./timer-tabs";
-
+import { useTimerContext } from "../../context/timer-context";
 import type { TimerMode } from "../../App";
 
 import "../../styles/pomodoro-timer.css";
-import { TimerContext } from "../../context/timer-context";
-
-export const TimerDurations = {
-  pomodoro: 25 * 60,
-  shortBreak: 5 * 60,
-  longBreak: 15 * 60,
-} as const;
 
 interface PomodoroTimerProps {
   activeMode: TimerMode;
@@ -20,16 +13,14 @@ interface PomodoroTimerProps {
 }
 
 const PomodoroTimer = ({ activeMode, setActiveMode }: PomodoroTimerProps) => {
-  // const [timeLeft, setTimeLeft] = useState<number>(TimerDurations.pomodoro);
-  const context = useContext(TimerContext);
-  if (!context) throw new Error("Error with context");
-  const { setTimeLeft } = context;
+  const { setTimeLeft, durations } = useTimerContext();
 
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const intervalIdRef = useRef<number | null>(null);
 
   useEffect(() => {
-    setTimeLeft(TimerDurations[activeMode]);
+    setTimeLeft(durations[activeMode]);
+    setIsRunning(false);
     const intervalId = intervalIdRef.current;
     if (intervalId) clearInterval(intervalId);
   }, [activeMode]);

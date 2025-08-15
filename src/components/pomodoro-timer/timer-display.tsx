@@ -1,10 +1,7 @@
-import { useContext } from "react";
-import { TimerContext } from "../../context/timer-context";
+import { useTimerContext } from "../../context/timer-context";
 
 const TimerDisplay = () => {
-  const context = useContext(TimerContext);
-  if (!context) throw new Error("Error with context");
-  const { timeLeft: currentTime } = context;
+  const { timeLeft: currentTime } = useTimerContext();
 
   return (
     <div className="timer-display">
