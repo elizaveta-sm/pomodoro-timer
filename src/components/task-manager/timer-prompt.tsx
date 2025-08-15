@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import type { TimerMode } from "../../App";
 
 interface TimerPromptProps {
@@ -6,6 +7,10 @@ interface TimerPromptProps {
 }
 
 const TimerPrompt = ({ activeMode, activeTaskTitle }: TimerPromptProps) => {
+  useEffect(() => {
+    document.title = `Pomodoro - ${modePrompts[activeMode]}`;
+  }, [activeMode]);
+
   const modePrompts = {
     shortBreak: "Time for a break!",
     longBreak: "Time for a break!",
